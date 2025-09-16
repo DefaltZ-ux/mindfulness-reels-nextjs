@@ -29,7 +29,7 @@ export default function LikedPage() {
 
   if (likedSlides.length === 0) {
     return (
-      <div className="h-screen w-full flex items-center justify-center bg-gradient-to-br from-primary to-secondary">
+      <div className="h-screen w-full flex items-center justify-center bg-gradient-to-br from-green-600 to-green-300">
         <div className="text-center text-white px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -38,7 +38,7 @@ export default function LikedPage() {
             className="max-w-md mx-auto"
           >
             <Heart className="w-16 h-16 mx-auto mb-6 text-white/60" />
-            <h1 className="text-3xl font-light mb-4">No Liked Moments Yet</h1>
+            <h1 className="text-3xl mb-4">No Liked Moments Yet</h1>
             <p className="text-lg text-white/80 mb-8 leading-relaxed">
               Start exploring mindful quotes and double-tap the ones that
               resonate with you.

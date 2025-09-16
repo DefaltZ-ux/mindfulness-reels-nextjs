@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Heart, Home } from "lucide-react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { useSwipe } from "@/hooks/use-swipe";
 import { useLikedSlides } from "@/hooks/use-liked-slides";
 
@@ -52,7 +53,12 @@ export function ReelsContainer({
 
   // Initialize slides
   useEffect(() => {
-    if (initialSlides && initialSlides.length > 0) {
+    if (initialSlides && initialSlides.length === 0) {
+      // If no more liked slides, redirect to home page
+      console.log("initialSlides?.length", initialSlides?.length);
+      redirect("/");
+    } else if (initialSlides && initialSlides.length > 0) {
+      console.log("initialSlides?.length", initialSlides?.length);
       setSlides(initialSlides);
     } else {
       // Generate initial set of slides
@@ -60,6 +66,8 @@ export function ReelsContainer({
       setSlides(initialSet);
     }
   }, [initialSlides, generateSlide]);
+
+  console.log("initialSlides?.length", initialSlides?.length);
 
   // Navigation functions
   const goToNext = useCallback(() => {
@@ -152,9 +160,13 @@ export function ReelsContainer({
     }),
   };
 
+  if (slides.length === 0 && isLikedPage) {
+    return null; // Let the parent component handle empty state
+  }
+
   if (slides.length === 0) {
     return (
-      <div className="h-dvh w-full flex items-center justify-center bg-primary">
+      <div className="h-dvh w-full flex items-center justify-center bg-green-500">
         <div className="text-center text-white">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4" />
           <p className="text-lg">Loading mindful moments...</p>
