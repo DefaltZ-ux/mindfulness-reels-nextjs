@@ -91,7 +91,7 @@ export function ReelSlideComponent({
       {/* Like Button */}
       {showLikeButton && (
         <motion.button
-          className="absolute bottom-8 right-8 p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors"
+          className="absolute bottom-8 right-8 sm:bottom-4 sm:right-4 p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors"
           onClick={handleLikeToggle}
           whileTap={{ scale: 0.9 }}
           whileHover={{ scale: 1.1 }}
