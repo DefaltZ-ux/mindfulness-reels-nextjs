@@ -102,7 +102,7 @@ export const inspirationalQuotes = [
   "I am worthy of achieving my dreams and living a life that brings me joy and fulfillment.",
   "I choose to let go of fear and embrace courage, knowing that I am capable of great things.",
   "I am grateful for the love and support of those around me, which lifts me up and inspires me to be my best self.",
-]
+];
 
 export const mindfulColors = [
   "#10b981", // emerald-500
@@ -120,32 +120,12 @@ export const mindfulColors = [
   "#22d3ee", // sky-500
   "#f43f5e", // rose-500
   "#eab308", // yellow-500
-  "#34d399", // emerald-400
-  "#0ea5e9", // sky-400
-  "#c084fc", // violet-400
-  "#fbbf24", // amber-400
-  "#f87171", // red-400
-  "#a7f3d0", // emerald-200
-  "#bae6fd", // sky-200
-  "#e0e7ff", // indigo-200
-  "#fef3c7", // amber-200
-  "#fecaca", // red-200
-  "#fbcfe8", // pink-200
-  "#ede9fe", // violet-200
-  "#fcd34d", // yellow-400
-  "#6ee7b7", // emerald-300
-  "#7dd3fc", // sky-300
-  "#c7d2fe", // indigo-300
-  "#fde68a", // amber-300
-  "#fca5a5", // red-300
-  "#f9a8d4", // pink-300
-  "#ddd6fe", // violet-300
-]
+];
 
 export interface ReelSlide {
-  id: string
-  text: string
-  backgroundColor: string
-  isLiked: boolean
-  timestamp: number
+  id: string;
+  text: string;
+  backgroundColor: string;
+  isLiked: boolean;
+  timestamp: number;
 }
