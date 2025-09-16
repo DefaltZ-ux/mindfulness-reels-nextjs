@@ -1,60 +1,70 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { motion, AnimatePresence } from "motion/react"
-import { Heart } from "lucide-react"
-import { useState, useEffect } from "react"
-import type { ReelSlide } from "@/lib/quotes"
-import { isSlideliked } from "@/lib/storage"
+import { motion, AnimatePresence } from "motion/react";
+import { Heart } from "lucide-react";
+import { useState, useEffect } from "react";
+import type { ReelSlide } from "@/lib/quotes";
+import { isSlideliked } from "@/lib/storage";
 
 interface ReelSlideProps {
-  slide: ReelSlide
-  onLike?: (slide: ReelSlide) => void
-  onUnlike?: (slideId: string) => void
-  showLikeButton?: boolean
+  slide: ReelSlide;
+  onLike?: (slide: ReelSlide) => void;
+  onUnlike?: (slideId: string) => void;
+  showLikeButton?: boolean;
 }
 
-export function ReelSlideComponent({ slide, onLike, onUnlike, showLikeButton = true }: ReelSlideProps) {
-  const [isLiked, setIsLiked] = useState(false)
-  const [showHeartAnimation, setShowHeartAnimation] = useState(false)
-  const [lastTap, setLastTap] = useState(0)
+export function ReelSlideComponent({
+  slide,
+  onLike,
+  onUnlike,
+  showLikeButton = true,
+}: ReelSlideProps) {
+  const [isLiked, setIsLiked] = useState(false);
+  const [showHeartAnimation, setShowHeartAnimation] = useState(false);
+  const [lastTap, setLastTap] = useState(0);
 
   useEffect(() => {
-    setIsLiked(isSlideliked(slide.id))
-  }, [slide.id])
+    setIsLiked(isSlideliked(slide.id));
+  }, [slide.id]);
 
   const handleDoubleTap = (e: React.MouseEvent) => {
-    const now = Date.now()
-    const timeDiff = now - lastTap
+    const now = Date.now();
+    const timeDiff = now - lastTap;
 
     if (timeDiff < 300 && timeDiff > 0) {
       // Double tap detected
-      e.preventDefault()
+      e.preventDefault();
       if (!isLiked) {
-        setIsLiked(true)
-        onLike?.(slide)
-        setShowHeartAnimation(true)
-        setTimeout(() => setShowHeartAnimation(false), 1000)
+        setIsLiked(true);
+        onLike?.(slide);
+        setShowHeartAnimation(true);
+        setTimeout(() => setShowHeartAnimation(false), 1000);
+      } else {
+        setIsLiked(false);
+        onUnlike?.(slide.id);
+        setShowHeartAnimation(true);
+        setTimeout(() => setShowHeartAnimation(false), 1000);
       }
     }
 
-    setLastTap(now)
-  }
+    setLastTap(now);
+  };
 
   const handleLikeToggle = (e: React.MouseEvent) => {
-    e.stopPropagation()
+    e.stopPropagation();
     if (isLiked) {
-      setIsLiked(false)
-      onUnlike?.(slide.id)
+      setIsLiked(false);
+      onUnlike?.(slide.id);
     } else {
-      setIsLiked(true)
-      onLike?.(slide)
+      setIsLiked(true);
+      onLike?.(slide);
       // Show animation for manual like too
-      setShowHeartAnimation(true)
-      setTimeout(() => setShowHeartAnimation(false), 800)
+      setShowHeartAnimation(true);
+      setTimeout(() => setShowHeartAnimation(false), 800);
     }
-  }
+  };
 
   return (
     <div
@@ -88,7 +98,9 @@ export function ReelSlideComponent({ slide, onLike, onUnlike, showLikeButton = t
         >
           <Heart
             className={`w-6 h-6 transition-all duration-300 ${
-              isLiked ? "fill-red-500 text-red-500 scale-110" : "text-white hover:text-red-200"
+              isLiked
+                ? "fill-red-500 text-red-500 scale-110"
+                : "text-white hover:text-red-200"
             }`}
           />
         </motion.button>
@@ -115,13 +127,23 @@ export function ReelSlideComponent({ slide, onLike, onUnlike, showLikeButton = t
           <motion.div
             className="w-0.5 h-8 bg-white/40 rounded-full"
             animate={{ y: [-3, 3, -3] }}
-            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            transition={{
+              duration: 2,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            }}
           />
-          <p className="text-xs font-medium rotate-90 whitespace-nowrap">Swipe</p>
+          <p className="text-xs font-medium rotate-90 whitespace-nowrap">
+            Swipe
+          </p>
           <motion.div
             className="w-0.5 h-8 bg-white/40 rounded-full"
             animate={{ y: [3, -3, 3] }}
-            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            transition={{
+              duration: 2,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            }}
           />
         </div>
       </div>
@@ -131,5 +153,5 @@ export function ReelSlideComponent({ slide, onLike, onUnlike, showLikeButton = t
         <p>Double-tap to like</p>
       </div>
     </div>
-  )
+  );
 }
