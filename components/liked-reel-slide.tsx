@@ -137,7 +137,7 @@ export function LikedReelSlideComponent({
       </div>
 
       {/* Liked indicator */}
-      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 text-white/50 text-sm text-center">
+      <div className="absolute bottom-10 lg:bottom-20 left-1/2 -translate-x-1/2 text-white/50 text-sm text-center">
         <div className="flex items-center gap-2">
           <Heart className="w-4 h-4 fill-red-500 text-red-500" />
           <p>Tap heart to remove</p>

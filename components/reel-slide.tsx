@@ -149,7 +149,7 @@ export function ReelSlideComponent({
       </div>
 
       {/* Double-tap hint */}
-      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 text-white/50 text-sm text-center">
+      <div className="absolute bottom-10 lg:bottom-20 left-1/2 -translate-x-1/2 text-white/50 text-sm text-center">
         <p>Double-tap to like</p>
       </div>
     </div>
