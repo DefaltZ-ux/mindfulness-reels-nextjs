@@ -58,7 +58,7 @@ export function ReelSlideComponent({ slide, onLike, onUnlike, showLikeButton = t
 
   return (
     <div
-      className="relative h-screen w-full flex items-center justify-center overflow-hidden cursor-pointer select-none"
+      className="relative h-dvh w-full flex items-center justify-center overflow-hidden cursor-pointer select-none"
       style={{ backgroundColor: slide.backgroundColor }}
       onClick={handleDoubleTap}
     >
@@ -110,16 +110,16 @@ export function ReelSlideComponent({ slide, onLike, onUnlike, showLikeButton = t
       </AnimatePresence>
 
       {/* Swipe Indicators */}
-      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60">
-        <div className="flex flex-col items-center gap-2">
+      <div className="absolute left-2 top-1/2 -translate-y-1/2 text-white/60">
+        <div className="flex flex-col items-center gap-4">
           <motion.div
-            className="w-1 h-8 bg-white/40 rounded-full"
+            className="w-0.5 h-8 bg-white/40 rounded-full"
             animate={{ y: [-2, 2, -2] }}
             transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
           />
           <p className="text-xs font-medium rotate-90 whitespace-nowrap">Swipe</p>
           <motion.div
-            className="w-1 h-8 bg-white/40 rounded-full"
+            className="w-0.5 h-8 bg-white/40 rounded-full"
             animate={{ y: [2, -2, 2] }}
             transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
           />
