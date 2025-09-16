@@ -10,7 +10,7 @@ import {
   type ReelSlide,
 } from "@/lib/quotes";
 import { Button } from "@/components/ui/button";
-import { Heart, Home } from "lucide-react";
+import { ArrowLeft, Heart, Home } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useSwipe } from "@/hooks/use-swipe";
@@ -160,9 +160,9 @@ export function ReelsContainer({
     }),
   };
 
-  if (slides.length === 0 && isLikedPage) {
-    return null; // Let the parent component handle empty state
-  }
+  // if (isLikedPage && slides.length === 0) {
+  //   redirect("/"); // Let the parent component handle empty state
+  // }
 
   if (slides.length === 0) {
     return (
@@ -170,6 +170,12 @@ export function ReelsContainer({
         <div className="text-center text-white">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4" />
           <p className="text-lg">Loading mindful moments...</p>
+          <Link href="/">
+            <Button className="bg-white text-primary hover:bg-white/90 px-8 py-3 text-lg">
+              <ArrowLeft className="w-5 h-5 mr-2" />
+              Refresh feed
+            </Button>
+          </Link>
         </div>
       </div>
     );
