@@ -154,7 +154,7 @@ export function ReelsContainer({
 
   if (slides.length === 0) {
     return (
-      <div className="h-screen w-full flex items-center justify-center bg-primary">
+      <div className="h-dvh w-full flex items-center justify-center bg-primary">
         <div className="text-center text-white">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4" />
           <p className="text-lg">Loading mindful moments...</p>
@@ -164,10 +164,11 @@ export function ReelsContainer({
   }
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
+    <div className="relative h-dvh w-full overflow-hidden">
       {/* Navigation */}
       {showNavigation && (
         <div className="absolute top-4 left-4 right-4 z-50 flex justify-between items-center">
+          {/* Home button */}
           <Link href="/">
             <Button
               variant="ghost"
@@ -178,6 +179,13 @@ export function ReelsContainer({
               Home
             </Button>
           </Link>
+
+          {/* Slide Counter */}
+          <div className="text-white/80 text-sm bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+            {currentIndex + 1} / {slides.length}
+          </div>
+
+          {/* Liked reels button */}
           <Link href="/liked">
             <Button
               variant="ghost"
@@ -227,7 +235,7 @@ export function ReelsContainer({
       </AnimatePresence>
 
       {/* Navigation Controls (for testing) */}
-      <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-2 z-50 opacity-50 hover:opacity-100 transition-opacity">
+      {/* <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-2 z-50 opacity-50 hover:opacity-100 transition-opacity">
         <Button
           onClick={goToPrevious}
           disabled={currentIndex === 0}
@@ -246,12 +254,12 @@ export function ReelsContainer({
         >
           ↓
         </Button>
-      </div>
+      </div> */}
 
       {/* Slide Counter */}
-      <div className="absolute bottom-4 right-4 text-white/80 text-sm bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+      {/* <div className="absolute bottom-4 right-4 text-white/80 text-sm bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
         {currentIndex + 1} / {slides.length}
-      </div>
+      </div> */}
     </div>
   );
 }

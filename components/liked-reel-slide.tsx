@@ -1,33 +1,36 @@
-"use client"
+"use client";
 
-import { motion, AnimatePresence } from "framer-motion"
-import { Heart, Trash2 } from "lucide-react"
-import { useState } from "react"
-import type { ReelSlide } from "@/lib/quotes"
-import { Button } from "@/components/ui/button"
+import { motion, AnimatePresence } from "motion/react";
+import { Heart, Trash2 } from "lucide-react";
+import { useState } from "react";
+import type { ReelSlide } from "@/lib/quotes";
+import { Button } from "@/components/ui/button";
 
 interface LikedReelSlideProps {
-  slide: ReelSlide
-  onUnlike?: (slideId: string) => void
+  slide: ReelSlide;
+  onUnlike?: (slideId: string) => void;
 }
 
-export function LikedReelSlideComponent({ slide, onUnlike }: LikedReelSlideProps) {
-  const [showConfirmDelete, setShowConfirmDelete] = useState(false)
-  const [isDeleting, setIsDeleting] = useState(false)
+export function LikedReelSlideComponent({
+  slide,
+  onUnlike,
+}: LikedReelSlideProps) {
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const handleUnlike = async () => {
-    setIsDeleting(true)
+    setIsDeleting(true);
     // Add a small delay for better UX
     setTimeout(() => {
-      onUnlike?.(slide.id)
-      setIsDeleting(false)
-      setShowConfirmDelete(false)
-    }, 300)
-  }
+      onUnlike?.(slide.id);
+      setIsDeleting(false);
+      setShowConfirmDelete(false);
+    }, 300);
+  };
 
   return (
     <div
-      className="relative h-screen w-full flex items-center justify-center overflow-hidden select-none"
+      className="relative h-dvh w-full flex items-center justify-center overflow-hidden select-none"
       style={{ backgroundColor: slide.backgroundColor }}
     >
       {/* Quote Text */}
@@ -77,8 +80,12 @@ export function LikedReelSlideComponent({ slide, onUnlike }: LikedReelSlideProps
               exit={{ scale: 0.9, opacity: 0 }}
             >
               <Trash2 className="w-12 h-12 text-red-500 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Remove from Liked?</h3>
-              <p className="text-gray-600 mb-6">This quote will be removed from your liked collection.</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Remove from Liked?
+              </h3>
+              <p className="text-gray-600 mb-6">
+                This quote will be removed from your liked collection.
+              </p>
               <div className="flex gap-3">
                 <Button
                   variant="outline"
@@ -88,7 +95,12 @@ export function LikedReelSlideComponent({ slide, onUnlike }: LikedReelSlideProps
                 >
                   Cancel
                 </Button>
-                <Button variant="destructive" onClick={handleUnlike} className="flex-1" disabled={isDeleting}>
+                <Button
+                  variant="destructive"
+                  onClick={handleUnlike}
+                  className="flex-1"
+                  disabled={isDeleting}
+                >
                   {isDeleting ? "Removing..." : "Remove"}
                 </Button>
               </div>
@@ -98,18 +110,28 @@ export function LikedReelSlideComponent({ slide, onUnlike }: LikedReelSlideProps
       </AnimatePresence>
 
       {/* Swipe Indicators */}
-      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60">
-        <div className="flex flex-col items-center gap-2">
+      <div className="absolute left-2 top-1/2 -translate-y-1/2 text-white/60">
+        <div className="flex flex-col items-center gap-4">
           <motion.div
-            className="w-1 h-8 bg-white/40 rounded-full"
-            animate={{ y: [-2, 2, -2] }}
-            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            className="w-0.5 h-8 bg-white/40 rounded-full"
+            animate={{ y: [-3, 3, -3] }}
+            transition={{
+              duration: 2,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            }}
           />
-          <p className="text-xs font-medium rotate-90 whitespace-nowrap">Swipe</p>
+          <p className="text-xs font-medium rotate-90 whitespace-nowrap">
+            Swipe
+          </p>
           <motion.div
-            className="w-1 h-8 bg-white/40 rounded-full"
-            animate={{ y: [2, -2, 2] }}
-            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            className="w-0.5 h-8 bg-white/40 rounded-full"
+            animate={{ y: [3, -3, 3] }}
+            transition={{
+              duration: 2,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            }}
           />
         </div>
       </div>
@@ -122,5 +144,5 @@ export function LikedReelSlideComponent({ slide, onUnlike }: LikedReelSlideProps
         </div>
       </div>
     </div>
-  )
+  );
 }

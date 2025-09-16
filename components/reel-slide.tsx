@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence } from "motion/react"
 import { Heart } from "lucide-react"
 import { useState, useEffect } from "react"
 import type { ReelSlide } from "@/lib/quotes"
@@ -114,13 +114,13 @@ export function ReelSlideComponent({ slide, onLike, onUnlike, showLikeButton = t
         <div className="flex flex-col items-center gap-4">
           <motion.div
             className="w-0.5 h-8 bg-white/40 rounded-full"
-            animate={{ y: [-2, 2, -2] }}
+            animate={{ y: [-3, 3, -3] }}
             transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
           />
           <p className="text-xs font-medium rotate-90 whitespace-nowrap">Swipe</p>
           <motion.div
             className="w-0.5 h-8 bg-white/40 rounded-full"
-            animate={{ y: [2, -2, 2] }}
+            animate={{ y: [3, -3, 3] }}
             transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
           />
         </div>
