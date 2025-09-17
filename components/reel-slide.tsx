@@ -9,6 +9,7 @@ import type { ReelSlide } from "@/lib/quotes";
 import { isSlideliked } from "@/lib/storage";
 import { SwipeIndicators } from "./swipe-indicators";
 import { handleShareAffirmation } from "@/lib/share";
+import MenuDrawer from "./menu-drawer";
 
 interface ReelSlideProps {
   slide: ReelSlide;
@@ -90,21 +91,11 @@ export function ReelSlideComponent({
       </div>
 
       {/* Like & Share Buttons */}
-      <div className="absolute bottom-20 right-4 flex flex-col gap-3 z-20">
-        {/* Share Button */}
-        <motion.button
-          className="p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors"
-          onClick={() => handleShareAffirmation(slide.text)}
-          whileTap={{ scale: 0.9 }}
-          whileHover={{ scale: 1.1 }}
-        >
-          <Share2 className="w-6 h-6 text-white" />
-        </motion.button>
-
+      <div className="absolute bottom-20 right-4 flex flex-col items-center gap-8 z-20">
         {/* Like Button */}
         {showLikeButton && (
           <motion.button
-            className="p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors"
+            className=""
             onClick={handleLikeToggle}
             whileTap={{ scale: 0.9 }}
             whileHover={{ scale: 1.1 }}
@@ -118,6 +109,25 @@ export function ReelSlideComponent({
             />
           </motion.button>
         )}
+
+        {/* Share Button */}
+        <motion.button
+          className=""
+          onClick={() => handleShareAffirmation(slide.text)}
+          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.1 }}
+        >
+          <Share2 className="w-6 h-6 text-white" />
+        </motion.button>
+
+        {/* Menu Button */}
+        <motion.div
+          className=""
+          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.1 }}
+        >
+          <MenuDrawer />
+        </motion.div>
       </div>
 
       {/* Double Tap Heart Animation */}
