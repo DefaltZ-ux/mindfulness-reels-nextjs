@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { ReelsContainer } from "@/components/reels-container";
 import { useLikedSlidesStore } from "@/store/liked-slides-store";
 import { Button } from "@/components/ui/button";
-import { Heart, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { HeartIcon } from "@phosphor-icons/react";
@@ -46,9 +46,9 @@ export default function LikedPage() {
               resonate with you.
             </p>
             <Link href="/">
-              <Button className="bg-orange-500 text-white px-80 py-6 text-lg rounded-3xl hover:bg-orange-600 cursor-pointer">
+              <Button className="bg-white/50 text-black px-8 py-6 text-md rounded-3xl hover:bg-white/40 cursor-pointer">
                 <ArrowLeft strokeWidth={3} className="w-5 h-5" />
-                Explore More
+                <span>Explore More</span>
               </Button>
             </Link>
           </motion.div>
