@@ -1,11 +1,12 @@
 "use client";
 
 import { motion, AnimatePresence } from "motion/react";
-import { Heart, Trash2 } from "lucide-react";
+import { Heart, Share2, Trash2 } from "lucide-react";
 import { useState } from "react";
 import type { ReelSlide } from "@/lib/quotes";
 import { Button } from "@/components/ui/button";
 import { SwipeIndicators } from "./swipe-indicators";
+import { handleShareAffirmation } from "@/lib/share";
 
 interface LikedReelSlideProps {
   slide: ReelSlide;
@@ -40,30 +41,42 @@ export function LikedReelSlideComponent({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-2xl md:text-4xl lg:text-5xl font-light leading-relaxed text-white text-balance"
+          className="text-2xl md:text-4xl lg:text-5xl font-extrabold leading-relaxed text-white text-balance"
           style={{
-            textShadow: "0 2px 4px rgba(0,0,0,0.3)",
-            fontFamily: "Georgia, serif",
+            fontFamily: "Geist, serif",
           }}
         >
           {slide.text}
         </motion.p>
       </div>
 
-      {/* Unlike Button */}
-      <motion.button
-        className="absolute bottom-20 right-4 sm:bottom-4 sm:right-4 p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors"
-        onClick={() => setShowConfirmDelete(true)}
-        whileTap={{ scale: 0.9 }}
-        whileHover={{ scale: 1.1 }}
-        disabled={isDeleting}
-      >
-        {isDeleting ? (
-          <div className="w-6 h-6 animate-spin rounded-full border-2 border-white border-t-transparent" />
-        ) : (
-          <Heart className="w-6 h-6 fill-red-500 text-red-500" />
-        )}
-      </motion.button>
+      {/* Like & Share Buttons */}
+      <div className="absolute bottom-20 right-4 flex flex-col gap-3 z-20">
+        {/* Share Button */}
+        <motion.button
+          className="p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors"
+          onClick={() => handleShareAffirmation(slide.text)}
+          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.1 }}
+        >
+          <Share2 className="w-6 h-6 text-white" />
+        </motion.button>
+
+        {/* Unlike Button */}
+        <motion.button
+          className="p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors"
+          onClick={() => setShowConfirmDelete(true)}
+          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.1 }}
+          disabled={isDeleting}
+        >
+          {isDeleting ? (
+            <div className="w-6 h-6 animate-spin rounded-full border-2 border-white border-t-transparent" />
+          ) : (
+            <Heart className="w-6 h-6 fill-red-500 text-red-500" />
+          )}
+        </motion.button>
+      </div>
 
       {/* Confirm Delete Modal */}
       <AnimatePresence>

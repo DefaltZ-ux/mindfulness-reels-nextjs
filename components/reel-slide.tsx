@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import type { ReelSlide } from "@/lib/quotes";
 import { isSlideliked } from "@/lib/storage";
 import { SwipeIndicators } from "./swipe-indicators";
+import { handleShareAffirmation } from "@/lib/share";
 
 interface ReelSlideProps {
   slide: ReelSlide;
@@ -67,21 +68,6 @@ export function ReelSlideComponent({
     }
   };
 
-  const handleShare = async (text: string) => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          text: text,
-        });
-        console.log("Content shared successfully");
-      } catch (error) {
-        console.error("Error sharing content:", error);
-      }
-    } else {
-      alert("Web Share API is not supported in this browser.");
-    }
-  };
-
   return (
     <div
       className="relative h-dvh w-full flex items-center justify-center overflow-hidden cursor-pointer select-none"
@@ -96,7 +82,6 @@ export function ReelSlideComponent({
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-2xl md:text-4xl lg:text-5xl font-extrabold leading-relaxed text-white text-balance"
           style={{
-            // textShadow: "0 2px 4px rgba(0,0,0,0.3)",
             fontFamily: "Geist, serif",
           }}
         >
@@ -105,19 +90,19 @@ export function ReelSlideComponent({
       </div>
 
       {/* Like & Share Buttons */}
-      {showLikeButton && (
-        <div className="absolute bottom-20 right-4 flex flex-col gap-3 z-20">
-          {/* Share Button */}
-          <motion.button
-            className="p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors"
-            onClick={() => handleShare(slide.text)}
-            whileTap={{ scale: 0.9 }}
-            whileHover={{ scale: 1.1 }}
-          >
-            <Share2 className="w-6 h-6 text-white" />
-          </motion.button>
+      <div className="absolute bottom-20 right-4 flex flex-col gap-3 z-20">
+        {/* Share Button */}
+        <motion.button
+          className="p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors"
+          onClick={() => handleShareAffirmation(slide.text)}
+          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.1 }}
+        >
+          <Share2 className="w-6 h-6 text-white" />
+        </motion.button>
 
-          {/* Like Button */}
+        {/* Like Button */}
+        {showLikeButton && (
           <motion.button
             className="p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors"
             onClick={handleLikeToggle}
@@ -132,8 +117,8 @@ export function ReelSlideComponent({
               }`}
             />
           </motion.button>
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Double Tap Heart Animation */}
       <AnimatePresence>
