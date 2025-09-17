@@ -25,8 +25,8 @@ export default function MenuDrawer() {
         </DrawerTrigger>
         <DrawerContent className="max-w-3xl mx-auto">
           <DrawerHeader>
-            <DrawerTitle>Menu</DrawerTitle>
-            <DrawerDescription>Coming soon</DrawerDescription>
+            <DrawerTitle>Mindfulness</DrawerTitle>
+            <DrawerDescription>Find your inner peace</DrawerDescription>
           </DrawerHeader>
           <div className="text-center">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa est

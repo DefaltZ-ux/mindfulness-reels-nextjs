@@ -1,13 +1,12 @@
 "use client";
 
 import { motion, AnimatePresence } from "motion/react";
-import { Heart, Share2, Trash2 } from "lucide-react";
+import { EllipsisVertical, Heart, Share2, Trash2 } from "lucide-react";
 import { useState } from "react";
 import type { ReelSlide } from "@/lib/quotes";
 import { Button } from "@/components/ui/button";
 import { SwipeIndicators } from "./swipe-indicators";
 import { handleShareAffirmation } from "@/lib/share";
-import MenuDrawer from "./menu-drawer";
 
 interface LikedReelSlideProps {
   slide: ReelSlide;
@@ -86,7 +85,7 @@ export function LikedReelSlideComponent({
           whileTap={{ scale: 0.9 }}
           whileHover={{ scale: 1.1 }}
         >
-          <MenuDrawer />
+          <EllipsisVertical className="text-white" />
         </motion.div>
       </div>
 
