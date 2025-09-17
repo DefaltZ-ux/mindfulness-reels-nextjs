@@ -81,7 +81,7 @@ export function LikedReelSlideComponent({
 
         {/* Menu Button */}
         <motion.div
-          className="p-2 md:p-3 pb-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors"
+          className="p-2 md:p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors"
           whileTap={{ scale: 0.9 }}
           whileHover={{ scale: 1.1 }}
         >

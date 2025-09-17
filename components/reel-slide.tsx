@@ -103,7 +103,7 @@ export function ReelSlideComponent({
               className={`w-6 h-6 transition-all duration-300 ${
                 isLiked
                   ? "fill-red-500 text-red-500 scale-110"
-                  : "text-white hover:text-red-200"
+                  : "text-white"
               }`}
             />
           </motion.button>
@@ -121,7 +121,7 @@ export function ReelSlideComponent({
 
         {/* Menu Button */}
         <motion.div
-          className="p-2 md:p-3 pb-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors"
+          className="p-2 md:p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors"
           whileTap={{ scale: 0.9 }}
           whileHover={{ scale: 1.1 }}
         >
