@@ -5,6 +5,7 @@ import { Heart, Trash2 } from "lucide-react";
 import { useState } from "react";
 import type { ReelSlide } from "@/lib/quotes";
 import { Button } from "@/components/ui/button";
+import { SwipeIndicators } from "./swipe-indicators";
 
 interface LikedReelSlideProps {
   slide: ReelSlide;
@@ -110,34 +111,10 @@ export function LikedReelSlideComponent({
       </AnimatePresence>
 
       {/* Swipe Indicators */}
-      <div className="absolute left-2 top-1/2 -translate-y-1/2 text-white/60">
-        <div className="flex flex-col items-center gap-4">
-          <motion.div
-            className="w-0.5 h-8 bg-white/40 rounded-full"
-            animate={{ y: [-3, 3, -3] }}
-            transition={{
-              duration: 2,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-            }}
-          />
-          <p className="text-xs font-medium rotate-90 whitespace-nowrap">
-            Swipe
-          </p>
-          <motion.div
-            className="w-0.5 h-8 bg-white/40 rounded-full"
-            animate={{ y: [3, -3, 3] }}
-            transition={{
-              duration: 2,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-            }}
-          />
-        </div>
-      </div>
+      <SwipeIndicators />
 
       {/* Liked indicator */}
-      <div className="absolute bottom-10 lg:bottom-20 left-1/2 -translate-x-1/2 text-white/50 text-sm text-center">
+      <div className="absolute bottom-20 lg:bottom-20 left-1/2 -translate-x-1/2 text-white/50 text-sm text-center">
         <div className="flex items-center gap-2">
           <Heart className="w-4 h-4 fill-red-500 text-red-500" />
           <p>Tap heart to remove</p>

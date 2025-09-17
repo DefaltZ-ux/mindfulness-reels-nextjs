@@ -7,6 +7,7 @@ import { Heart } from "lucide-react";
 import { useState, useEffect } from "react";
 import type { ReelSlide } from "@/lib/quotes";
 import { isSlideliked } from "@/lib/storage";
+import { SwipeIndicators } from "./swipe-indicators";
 
 interface ReelSlideProps {
   slide: ReelSlide;
@@ -78,10 +79,10 @@ export function ReelSlideComponent({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-2xl md:text-4xl lg:text-5xl font-light leading-relaxed text-white text-balance"
+          className="text-2xl md:text-4xl lg:text-5xl font-extrabold leading-relaxed text-white text-balance"
           style={{
-            textShadow: "0 2px 4px rgba(0,0,0,0.3)",
-            fontFamily: "Georgia, serif",
+            // textShadow: "0 2px 4px rgba(0,0,0,0.3)",
+            fontFamily: "Geist, serif",
           }}
         >
           {slide.text}
@@ -91,7 +92,7 @@ export function ReelSlideComponent({
       {/* Like Button */}
       {showLikeButton && (
         <motion.button
-          className="absolute bottom-8 right-8 sm:bottom-4 sm:right-4 p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors"
+          className="absolute bottom-20 right-4 p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors"
           onClick={handleLikeToggle}
           whileTap={{ scale: 0.9 }}
           whileHover={{ scale: 1.1 }}
@@ -122,34 +123,10 @@ export function ReelSlideComponent({
       </AnimatePresence>
 
       {/* Swipe Indicators */}
-      <div className="absolute left-2 top-1/2 -translate-y-1/2 text-white/60">
-        <div className="flex flex-col items-center gap-4">
-          <motion.div
-            className="w-0.5 h-8 bg-white/40 rounded-full"
-            animate={{ y: [-3, 3, -3] }}
-            transition={{
-              duration: 2,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-            }}
-          />
-          <p className="text-xs font-medium rotate-90 whitespace-nowrap">
-            Swipe
-          </p>
-          <motion.div
-            className="w-0.5 h-8 bg-white/40 rounded-full"
-            animate={{ y: [3, -3, 3] }}
-            transition={{
-              duration: 2,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-            }}
-          />
-        </div>
-      </div>
+      <SwipeIndicators />
 
       {/* Double-tap hint */}
-      <div className="absolute bottom-10 lg:bottom-20 left-1/2 -translate-x-1/2 text-white/50 text-sm text-center">
+      <div className="absolute bottom-20 lg:bottom-20 left-1/2 -translate-x-1/2 text-white/50 text-sm text-center">
         <p>Double-tap to like</p>
       </div>
     </div>

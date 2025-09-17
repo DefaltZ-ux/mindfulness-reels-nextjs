@@ -90,14 +90,6 @@ export const inspirationalQuotes = [
   "I trust the process of life and embrace its uncertainties with an open heart.",
   "I am grateful for the abundance of blessings in my life, both big and small.",
   "I am worthy of living a life filled with love, joy, and fulfillment.",
-  "I choose to focus on the good in people and situations, rather than dwelling on the negative.",
-  "I am grateful for my inner strength and resilience, which help me navigate life's challenges.",
-  "I am a source of positivity and light in the world, spreading kindness wherever I go.",
-  "I trust myself to make decisions that align with my highest good and well-being.",
-  "I am grateful for the present moment, knowing that it is a gift to be cherished and embraced.",
-  "I am worthy of achieving my dreams and living a life that brings me joy and fulfillment.",
-  "I choose to let go of fear and embrace courage, knowing that I am capable of great things.",
-  "I am grateful for the love and support of those around me, which lifts me up and inspires me to be my best self.",
 ];
 
 export const mindfulColors = [

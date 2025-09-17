@@ -2,19 +2,20 @@
 
 import { useEffect, useState } from "react";
 import { ReelsContainer } from "@/components/reels-container";
-import { useLikedSlides } from "@/hooks/use-liked-slides";
+import { useLikedSlidesStore } from "@/store/liked-slides-store";
 import { Button } from "@/components/ui/button";
 import { Heart, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { motion } from "motion/react";
 
 export default function LikedPage() {
-  const { likedSlides, isLoading } = useLikedSlides();
+  const { likedSlides, isLoading, initializeStore } = useLikedSlidesStore();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+    initializeStore();
+  }, [initializeStore]);
 
   if (!mounted || isLoading) {
     return (
@@ -56,32 +57,12 @@ export default function LikedPage() {
   }
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-dvh">
       <ReelsContainer
         initialSlides={likedSlides}
         showNavigation={false}
         isLikedPage={true}
       />
-
-      {/* Custom navigation for liked page */}
-      <div className="absolute top-4 left-4 right-4 z-50 flex justify-between items-center">
-        <Link href="/">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="text-white bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Explore
-          </Button>
-        </Link>
-        <div className="flex items-center gap-2 text-white bg-white/20 backdrop-blur-sm border border-white/30 px-3 py-2 rounded-md">
-          <Heart className="w-4 h-4 fill-red-500 text-red-500" />
-          <span className="text-sm font-medium">
-            {likedSlides.length} Liked
-          </span>
-        </div>
-      </div>
     </main>
   );
 }

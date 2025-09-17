@@ -10,11 +10,11 @@ import {
   type ReelSlide,
 } from "@/lib/quotes";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Heart, Home } from "lucide-react";
+import { Heart, Home } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useSwipe } from "@/hooks/use-swipe";
-import { useLikedSlides } from "@/hooks/use-liked-slides";
+import { useLikedSlidesStore } from "@/store/liked-slides-store";
 
 interface ReelsContainerProps {
   initialSlides?: ReelSlide[];
@@ -31,7 +31,12 @@ export function ReelsContainer({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
-  const { addLikedSlide, removeLikedSlideById, likedSlides } = useLikedSlides();
+  const { addLikedSlide, removeLikedSlideById, likedSlides, initializeStore } =
+    useLikedSlidesStore();
+
+  useEffect(() => {
+    initializeStore();
+  }, [initializeStore]);
 
   // Generate random slides
   const generateSlide = useCallback((): ReelSlide => {
@@ -160,9 +165,9 @@ export function ReelsContainer({
     }),
   };
 
-  // if (isLikedPage && slides.length === 0) {
-  //   redirect("/"); // Let the parent component handle empty state
-  // }
+  if (slides.length === 0 && isLikedPage) {
+    return null; // Let the parent component handle empty state
+  }
 
   if (slides.length === 0) {
     return (
@@ -170,12 +175,6 @@ export function ReelsContainer({
         <div className="text-center text-white">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4" />
           <p className="text-lg mb-4">Loading mindful moments...</p>
-          <Link href="/">
-            <Button className="bg-white text-primary hover:bg-white/90 px-8 py-3 text-lg">
-              <ArrowLeft className="w-5 h-5 mr-2" />
-              Refresh feed
-            </Button>
-          </Link>
         </div>
       </div>
     );
@@ -184,9 +183,8 @@ export function ReelsContainer({
   return (
     <div className="relative h-dvh w-full overflow-hidden">
       {/* Navigation */}
-      {showNavigation && (
+      {/* {showNavigation && (
         <div className="absolute top-4 left-4 right-4 z-50 flex justify-between items-center">
-          {/* Home button */}
           <Link href="/">
             <Button
               variant="ghost"
@@ -198,12 +196,10 @@ export function ReelsContainer({
             </Button>
           </Link>
 
-          {/* Slide Counter */}
           <div className="text-white/80 text-sm bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
             {currentIndex + 1} / {slides.length}
           </div>
 
-          {/* Liked reels button */}
           <Link href="/liked">
             <Button
               variant="ghost"
@@ -220,7 +216,7 @@ export function ReelsContainer({
             </Button>
           </Link>
         </div>
-      )}
+      )} */}
 
       {/* Slides */}
       <AnimatePresence mode="wait" custom={direction}>
@@ -251,33 +247,6 @@ export function ReelsContainer({
           )}
         </motion.div>
       </AnimatePresence>
-
-      {/* Navigation Controls (for testing) */}
-      {/* <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-2 z-50 opacity-50 hover:opacity-100 transition-opacity">
-        <Button
-          onClick={goToPrevious}
-          disabled={currentIndex === 0}
-          variant="ghost"
-          size="sm"
-          className="text-white bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 disabled:opacity-30 text-xs px-2 py-1"
-        >
-          ↑
-        </Button>
-        <Button
-          onClick={goToNext}
-          disabled={currentIndex >= slides.length - 1 && !!initialSlides}
-          variant="ghost"
-          size="sm"
-          className="text-white bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 disabled:opacity-30 text-xs px-2 py-1"
-        >
-          ↓
-        </Button>
-      </div> */}
-
-      {/* Slide Counter */}
-      {/* <div className="absolute bottom-4 right-4 text-white/80 text-sm bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
-        {currentIndex + 1} / {slides.length}
-      </div> */}
     </div>
   );
 }
