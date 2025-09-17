@@ -1,61 +1,122 @@
-// import useIsMobile from "@/hooks/use-mobile";
-import React from "react";
-
-import { Button } from "./ui/button";
+import React, { useState } from "react";
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
-  DrawerDescription,
   DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerTitle,
   DrawerTrigger,
 } from "./ui/drawer";
 import { EllipsisVertical } from "lucide-react";
+import {
+  BellIcon,
+  PaletteIcon,
+  ShareIcon,
+} from "@phosphor-icons/react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { handleShareWebsite } from "@/lib/share";
 
 export default function MenuDrawer() {
-  // const isMobile = useIsMobile();
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
-  function handleTouch(e: React.TouchEvent<HTMLDivElement>) {
-    e.preventDefault();
-    e.stopPropagation();
+  const menuItems = [
+    {
+      icon: PaletteIcon,
+      label: "Theme",
+      href: "/theme",
+      description: "Customize your experience",
+    },
+    {
+      icon: BellIcon,
+      label: "Notifications",
+      href: "#",
+      description: "Coming soon",
+      disabled: true,
+    },
+    {
+      icon: ShareIcon,
+      label: "Share Us",
+      href: "#",
+      description: "Share our website",
+      action: "share-website",
+    },
+  ];
+
+  const handleMenuItemClick = (item: (typeof menuItems)[0]) => {
+    if (item.action === "share-website") {
+      handleShareWebsite()
+    } else if (!item.disabled) {
+      setOpen(false)
+    }
   }
 
   return (
     <>
-      <Drawer>
+      <Drawer open={open} onOpenChange={setOpen}>
         <DrawerTrigger>
-          <EllipsisVertical className="text-white -mb-1" />
+          <EllipsisVertical className="text-white -mb-1.5" />
         </DrawerTrigger>
-        <DrawerOverlay onTouchStart={handleTouch}>
-          <DrawerContent className="max-w-3xl mx-auto">
-            <DrawerHeader>
-              <DrawerTitle>Mindfulness</DrawerTitle>
-              <DrawerDescription>Find your inner peace</DrawerDescription>
-            </DrawerHeader>
-            <div className="text-justify">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo
-              maxime deleniti consequatur, iste ut ipsum dicta, sequi illum
-              aliquam quaerat mollitia reprehenderit aliquid est repellendus
-              nihil ipsa alias consectetur quisquam possimus? Sunt animi vero
-              dicta culpa officia tempora adipisci eaque laboriosam deserunt,
-              fuga sapiente? Aut, quam necessitatibus praesentium repellendus
-              recusandae explicabo soluta delectus dicta deserunt, fugit error
-              animi, hic magni! Debitis placeat vero odit molestias dolor magni,
-              sint, minima quas, laboriosam ut nulla iure quis. Atque, alias
-              eaque inventore id quas odit vero sunt omnis maiores voluptatem
-              officia consequatur exercitationem quaerat velit doloremque quos
-              illo tenetur fuga dignissimos reprehenderit necessitatibus.
-            </div>
-            <DrawerFooter>
-              <DrawerClose>
-                <Button variant="outline">Close</Button>
-              </DrawerClose>
-            </DrawerFooter>
-          </DrawerContent>
-        </DrawerOverlay>
+
+        <DrawerContent className="max-w-3xl mx-auto">
+          <ul className="space-y-2">
+            {menuItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = pathname === item.href;
+              const isClickable =
+                !item.disabled && (item.href !== "#" || item.action);
+
+              return (
+                <li key={item.label}>
+                  {item.href !== "#" ? (
+                    <Link
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      className={cn(
+                        "flex items-center gap-3 px-4 py-3 rounded-lg transition-colors",
+                        "hover:bg-accent/50 group",
+                        isActive && "bg-primary/10 text-primary",
+                        item.disabled && "opacity-50 cursor-not-allowed"
+                      )}
+                    >
+                      <Icon className="h-5 w-5" />
+                      <div className="flex-1">
+                        <div className="font-medium">{item.label}</div>
+                        <div className="text-xs text-muted-foreground">
+                          {item.description}
+                        </div>
+                      </div>
+                    </Link>
+                  ) : (
+                    <button
+                      disabled={item.disabled}
+                      onClick={() => handleMenuItemClick(item)}
+                      className={cn(
+                        "w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-left",
+                        isClickable && "hover:bg-accent/50 group",
+                        item.disabled && "opacity-50 cursor-not-allowed"
+                      )}
+                    >
+                      <Icon className="h-5 w-5" />
+                      <div className="flex-1">
+                        <div className="font-medium">{item.label}</div>
+                        <div className="text-xs text-muted-foreground">
+                          {item.description}
+                        </div>
+                      </div>
+                    </button>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+          <DrawerFooter className="border-t">
+            <p className="text-gray-400 text-sm text-center">
+              <span>Made by </span>
+              <Link href={"https://www.iamdipankarpaul.com/"}>Dipankar Paul</Link>
+            </p>
+          </DrawerFooter>
+        </DrawerContent>
       </Drawer>
     </>
   );

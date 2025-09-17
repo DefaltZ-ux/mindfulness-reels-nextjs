@@ -13,13 +13,18 @@ export const handleShareAffirmation = async (text: string) => {
   }
 };
 
-export const handleShareWebsite = async (text: string) => {
+export const handleShareWebsite = async () => {
+  const title = "Mindfulness App"
+  const text = "Discover inner peace with this amazing mindfulness app! 🧘‍♀️"
+    const url = window.location.origin
   if (navigator.share) {
     try {
       await navigator.share({
-        text: text,
+        title,
+        text,
+        url
       });
-      console.log("Content shared successfully");
+      console.log("Website shared successfully");
     } catch (error) {
       console.error("Error sharing content:", error);
     }

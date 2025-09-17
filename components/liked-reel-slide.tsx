@@ -1,13 +1,14 @@
 "use client";
 
 import { motion, AnimatePresence } from "motion/react";
-import { Heart, Share2, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { useState } from "react";
 import type { ReelSlide } from "@/lib/quotes";
 import { Button } from "@/components/ui/button";
 import { SwipeIndicators } from "./swipe-indicators";
 import { handleShareAffirmation } from "@/lib/share";
 import MenuDrawer from "./menu-drawer";
+import { HeartIcon, PaperPlaneTiltIcon } from "@phosphor-icons/react";
 
 interface LikedReelSlideProps {
   slide: ReelSlide;
@@ -64,7 +65,7 @@ export function LikedReelSlideComponent({
           {isDeleting ? (
             <div className="w-6 h-6 animate-spin rounded-full border-2 border-white border-t-transparent" />
           ) : (
-            <Heart className="w-6 h-6 fill-red-500 text-red-500" />
+            <HeartIcon className="w-6 h-6 fill-red-500 text-red-500" />
           )}
         </motion.button>
 
@@ -75,7 +76,7 @@ export function LikedReelSlideComponent({
           whileTap={{ scale: 0.9 }}
           whileHover={{ scale: 1.1 }}
         >
-          <Share2 className="w-6 h-6 text-white" />
+          <PaperPlaneTiltIcon className="w-6 h-6 text-white" />
         </motion.button>
 
         {/* p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors */}
@@ -141,7 +142,7 @@ export function LikedReelSlideComponent({
       {/* Liked indicator */}
       <div className="absolute bottom-20 lg:bottom-20 left-1/2 -translate-x-1/2 text-white/50 text-sm text-center">
         <div className="flex items-center gap-2">
-          <Heart className="w-4 h-4 fill-red-500 text-red-500" />
+          <HeartIcon className="w-4 h-4 fill-red-500 text-red-500" />
           <p>Tap heart to remove</p>
         </div>
       </div>

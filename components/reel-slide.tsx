@@ -3,13 +3,13 @@
 import type React from "react";
 
 import { motion, AnimatePresence } from "motion/react";
-import { Heart, Share2 } from "lucide-react";
 import { useState, useEffect } from "react";
 import type { ReelSlide } from "@/lib/quotes";
 import { isSlideliked } from "@/lib/storage";
 import { SwipeIndicators } from "./swipe-indicators";
 import { handleShareAffirmation } from "@/lib/share";
 import MenuDrawer from "./menu-drawer";
+import { HeartIcon, PaperPlaneTiltIcon } from "@phosphor-icons/react";
 
 interface ReelSlideProps {
   slide: ReelSlide;
@@ -100,7 +100,7 @@ export function ReelSlideComponent({
             whileTap={{ scale: 0.9 }}
             whileHover={{ scale: 1.1 }}
           >
-            <Heart
+            <HeartIcon
               className={`w-6 h-6 transition-all duration-300 ${
                 isLiked
                   ? "fill-red-500 text-red-500 scale-110"
@@ -117,7 +117,7 @@ export function ReelSlideComponent({
           whileTap={{ scale: 0.9 }}
           whileHover={{ scale: 1.1 }}
         >
-          <Share2 className="w-6 h-6 text-white" />
+          <PaperPlaneTiltIcon className="w-6 h-6 text-white" />
         </motion.button>
 
         {/* Menu Button */}
@@ -140,7 +140,7 @@ export function ReelSlideComponent({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <Heart className="w-24 h-24 fill-red-500 text-red-500 drop-shadow-2xl" />
+            <HeartIcon className="w-24 h-24 fill-red-500 text-red-500 drop-shadow-2xl" />
           </motion.div>
         )}
       </AnimatePresence>
