@@ -28,13 +28,8 @@ export default function MenuDrawer() {
             <DrawerTitle>Mindfulness</DrawerTitle>
             <DrawerDescription>Find your inner peace</DrawerDescription>
           </DrawerHeader>
-          <div className="text-center">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa est
-            iste aspernatur enim suscipit obcaecati totam repellendus quas et
-            aliquid molestiae, iure amet libero debitis corrupti, illo corporis,
-            ut natus impedit! Tempore quas fugiat nemo rerum corporis nisi
-            incidunt provident accusamus! Ad fugit dicta vero quod placeat in
-            distinctio consequatur?
+          <div className="text-justify">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo maxime deleniti consequatur, iste ut ipsum dicta, sequi illum aliquam quaerat mollitia reprehenderit aliquid est repellendus nihil ipsa alias consectetur quisquam possimus? Sunt animi vero dicta culpa officia tempora adipisci eaque laboriosam deserunt, fuga sapiente? Aut, quam necessitatibus praesentium repellendus recusandae explicabo soluta delectus dicta deserunt, fugit error animi, hic magni! Debitis placeat vero odit molestias dolor magni, sint, minima quas, laboriosam ut nulla iure quis. Atque, alias eaque inventore id quas odit vero sunt omnis maiores voluptatem officia consequatur exercitationem quaerat velit doloremque quos illo tenetur fuga dignissimos reprehenderit necessitatibus.
           </div>
           <DrawerFooter>
             <DrawerClose>
