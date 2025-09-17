@@ -2,15 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Heart } from "lucide-react";
+import { HouseIcon, HeartIcon } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import useIsMobile from "@/hooks/use-mobile";
 import { useLikedSlidesStore } from "@/store/liked-slides-store";
 
 const navItems = [
-  { href: "/", icon: Home, label: "Home" },
-  { href: "/liked", icon: Heart, label: "Liked" },
+  { href: "/", icon: HouseIcon, label: "Home" },
+  { href: "/liked", icon: HeartIcon, label: "Liked" },
   //   { href: "/theme", icon: Settings, label: "Theme" },
 ];
 
@@ -24,7 +24,7 @@ export function Navigation() {
       <motion.nav
         initial={{ y: 100 }}
         animate={{ y: 0 }}
-        className="fixed bottom-0 left-0 right-0 bg-black z-50 h-14 flex items-center"
+        className="fixed bottom-0 left-0 right-0 bg-white z-50 h-14 flex items-center"
       >
         {/* bg-background/50 backdrop-blur-sm */}
         <div className="flex items-center justify-around flex-1 py-2">
@@ -45,10 +45,8 @@ export function Navigation() {
               >
                 <div className="relative">
                   <Icon
-                    // size={20}
-                    size={isActive ? 22 : 20}
-                    fill={isActive ? "white" : "black"}
-                    stroke={isActive ? "black" : "white"}
+                    size={24}
+                    weight={isActive ? "fill" : "regular"}
                   />
                   {showBadge && (
                     <motion.div
@@ -60,13 +58,6 @@ export function Navigation() {
                     </motion.div>
                   )}
                 </div>
-                {/* <span className="text-xs font-medium">{label}</span> */}
-                {/* {isActive && (
-                  <motion.div
-                    layoutId="mobile-active-tab"
-                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full"
-                  />
-                )} */}
               </Link>
             );
           })}
@@ -89,7 +80,7 @@ export function Navigation() {
             className="flex items-center gap-2"
           >
             <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
-              <Heart className="w-4 h-4 text-primary-foreground" />
+              <HeartIcon className="w-4 h-4 text-primary-foreground" />
             </div>
             <span className="font-semibold text-lg">Mindful</span>
           </motion.div>
