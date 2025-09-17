@@ -31,7 +31,7 @@ export default function RootLayout({
       >
         <Suspense fallback={<div>Loading...</div>}>
           <Navigation />
-          <main className="">{children}</main>
+          <main>{children}</main>
         </Suspense>
       </body>
     </html>

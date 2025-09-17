@@ -24,7 +24,7 @@ export function Navigation() {
       <motion.nav
         initial={{ y: 100 }}
         animate={{ y: 0 }}
-        className="fixed bottom-0 left-0 right-0 bg-red-500 z-50 h-12 flex items-center"
+        className="fixed bottom-0 left-0 right-0 bg-blue-500 z-50 h-12 flex items-center"
       >
         {/* bg-background/50 backdrop-blur-sm */}
         <div className="flex items-center justify-around flex-1 py-2">
@@ -46,6 +46,7 @@ export function Navigation() {
                 <div className="relative">
                   <Icon
                     size={24}
+                    color={"black"}
                     weight={isActive ? "fill" : "regular"}
                   />
                   {showBadge && (
