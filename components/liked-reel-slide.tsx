@@ -42,7 +42,7 @@ export function LikedReelSlideComponent({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-2xl md:text-4xl lg:text-5xl font-extrabold leading-relaxed text-white text-balance"
+          className="text-3xl max-md:leading-9 md:text-5xl lg:text-6xl font-extrabold leading-relaxed text-white text-balance"
           style={{
             fontFamily: "Geist, serif",
           }}
