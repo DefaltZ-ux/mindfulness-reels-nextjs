@@ -83,7 +83,7 @@ export function Navigation() {
             <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
               <HeartIcon className="w-4 h-4 text-primary-foreground" />
             </div>
-            <span className="font-semibold text-lg">Mindful</span>
+            <span className="font-semibold text-lg">Mindfulness</span>
           </motion.div>
 
           <motion.div
