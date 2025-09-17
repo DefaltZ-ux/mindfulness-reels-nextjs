@@ -3,12 +3,13 @@
 import type React from "react";
 
 import { motion, AnimatePresence } from "motion/react";
-import { EllipsisVertical, Heart, Share2 } from "lucide-react";
+import { Heart, Share2 } from "lucide-react";
 import { useState, useEffect } from "react";
 import type { ReelSlide } from "@/lib/quotes";
 import { isSlideliked } from "@/lib/storage";
 import { SwipeIndicators } from "./swipe-indicators";
 import { handleShareAffirmation } from "@/lib/share";
+import MenuDrawer from "./menu-drawer";
 
 interface ReelSlideProps {
   slide: ReelSlide;
@@ -125,7 +126,7 @@ export function ReelSlideComponent({
           whileTap={{ scale: 0.9 }}
           whileHover={{ scale: 1.1 }}
         >
-          <EllipsisVertical className="text-white" />
+          <MenuDrawer />
         </motion.div>
       </div>
 

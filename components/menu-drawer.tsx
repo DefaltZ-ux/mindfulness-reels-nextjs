@@ -2,7 +2,6 @@
 import React from "react";
 
 import { Button } from "./ui/button";
-import { DotsThreeOutlineVerticalIcon } from "@phosphor-icons/react";
 import {
   Drawer,
   DrawerClose,
@@ -13,6 +12,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "./ui/drawer";
+import { EllipsisVertical } from "lucide-react";
 
 export default function MenuDrawer() {
   // const isMobile = useIsMobile();
@@ -20,8 +20,8 @@ export default function MenuDrawer() {
   return (
     <>
       <Drawer>
-        <DrawerTrigger>
-          <DotsThreeOutlineVerticalIcon size={24} color="white" />
+        <DrawerTrigger >
+          <EllipsisVertical className="text-white -mb-1" />
         </DrawerTrigger>
         <DrawerContent className="max-w-3xl mx-auto">
           <DrawerHeader>
