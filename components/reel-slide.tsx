@@ -3,7 +3,7 @@
 import type React from "react";
 
 import { motion, AnimatePresence } from "motion/react";
-import { Heart } from "lucide-react";
+import { Heart, Share2 } from "lucide-react";
 import { useState, useEffect } from "react";
 import type { ReelSlide } from "@/lib/quotes";
 import { isSlideliked } from "@/lib/storage";
@@ -67,6 +67,21 @@ export function ReelSlideComponent({
     }
   };
 
+  const handleShare = async (text: string) => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          text: text,
+        });
+        console.log("Content shared successfully");
+      } catch (error) {
+        console.error("Error sharing content:", error);
+      }
+    } else {
+      alert("Web Share API is not supported in this browser.");
+    }
+  };
+
   return (
     <div
       className="relative h-dvh w-full flex items-center justify-center overflow-hidden cursor-pointer select-none"
@@ -89,22 +104,35 @@ export function ReelSlideComponent({
         </motion.p>
       </div>
 
-      {/* Like Button */}
+      {/* Like & Share Buttons */}
       {showLikeButton && (
-        <motion.button
-          className="absolute bottom-20 right-4 p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors"
-          onClick={handleLikeToggle}
-          whileTap={{ scale: 0.9 }}
-          whileHover={{ scale: 1.1 }}
-        >
-          <Heart
-            className={`w-6 h-6 transition-all duration-300 ${
-              isLiked
-                ? "fill-red-500 text-red-500 scale-110"
-                : "text-white hover:text-red-200"
-            }`}
-          />
-        </motion.button>
+        <div className="absolute bottom-20 right-4 flex flex-col gap-3 z-20">
+          {/* Share Button */}
+          <motion.button
+            className="p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors"
+            onClick={() => handleShare(slide.text)}
+            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.1 }}
+          >
+            <Share2 className="w-6 h-6 text-white" />
+          </motion.button>
+
+          {/* Like Button */}
+          <motion.button
+            className="p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors"
+            onClick={handleLikeToggle}
+            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.1 }}
+          >
+            <Heart
+              className={`w-6 h-6 transition-all duration-300 ${
+                isLiked
+                  ? "fill-red-500 text-red-500 scale-110"
+                  : "text-white hover:text-red-200"
+              }`}
+            />
+          </motion.button>
+        </div>
       )}
 
       {/* Double Tap Heart Animation */}
