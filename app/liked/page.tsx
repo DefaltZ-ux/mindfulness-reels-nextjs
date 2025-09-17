@@ -31,7 +31,7 @@ export default function LikedPage() {
 
   if (likedSlides.length === 0) {
     return (
-      <div className="h-screen w-full flex items-center justify-center bg-gradient-to-br from-green-600 to-green-300">
+      <div className="h-screen w-full flex items-center justify-center bg-primary/85">
         <div className="text-center text-white px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -61,7 +61,6 @@ export default function LikedPage() {
     <main className="min-h-dvh">
       <ReelsContainer
         initialSlides={likedSlides}
-        showNavigation={false}
         isLikedPage={true}
       />
     </main>

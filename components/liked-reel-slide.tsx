@@ -52,10 +52,10 @@ export function LikedReelSlideComponent({
       </div>
 
       {/* Unlike & Share Buttons */}
-      <div className="absolute bottom-20 right-6 flex flex-col items-center gap-4 md:gap-8 z-20">
+      <div className="absolute bottom-20 right-6 flex flex-col items-center gap-4 z-20">
         {/* Unlike Button */}
         <motion.button
-          className=""
+          className="p-2 md:p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors"
           onClick={() => setShowConfirmDelete(true)}
           whileTap={{ scale: 0.9 }}
           whileHover={{ scale: 1.1 }}
@@ -70,7 +70,7 @@ export function LikedReelSlideComponent({
 
         {/* Share Button */}
         <motion.button
-          className=""
+          className="p-2 md:p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors"
           onClick={() => handleShareAffirmation(slide.text)}
           whileTap={{ scale: 0.9 }}
           whileHover={{ scale: 1.1 }}
@@ -82,7 +82,7 @@ export function LikedReelSlideComponent({
 
         {/* Menu Button */}
         <motion.div
-          className=""
+          className="p-2 md:p-3 pb-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-colors"
           whileTap={{ scale: 0.9 }}
           whileHover={{ scale: 1.1 }}
         >

@@ -9,29 +9,24 @@ import {
   mindfulColors,
   type ReelSlide,
 } from "@/lib/quotes";
-import { Button } from "@/components/ui/button";
-import { Heart, Home } from "lucide-react";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useSwipe } from "@/hooks/use-swipe";
 import { useLikedSlidesStore } from "@/store/liked-slides-store";
 
 interface ReelsContainerProps {
   initialSlides?: ReelSlide[];
-  showNavigation?: boolean;
   isLikedPage?: boolean;
 }
 
 export function ReelsContainer({
   initialSlides,
-  showNavigation = true,
   isLikedPage = false,
 }: ReelsContainerProps) {
   const [slides, setSlides] = useState<ReelSlide[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
-  const { addLikedSlide, removeLikedSlideById, likedSlides, initializeStore } =
+  const { addLikedSlide, removeLikedSlideById, initializeStore } =
     useLikedSlidesStore();
 
   useEffect(() => {
@@ -182,44 +177,8 @@ export function ReelsContainer({
 
   return (
     <div className="relative h-dvh w-full overflow-hidden">
-      {/* Navigation */}
-      {/* {showNavigation && (
-        <div className="absolute top-4 left-4 right-4 z-50 flex justify-between items-center">
-          <Link href="/">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-white bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30"
-            >
-              <Home className="w-4 h-4 mr-2" />
-              Home
-            </Button>
-          </Link>
-
-          <div className="text-white/80 text-sm bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
-            {currentIndex + 1} / {slides.length}
-          </div>
-
-          <Link href="/liked">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-white bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 relative"
-            >
-              <Heart className="w-4 h-4 mr-2" />
-              Liked
-              {likedSlides.length > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                  {likedSlides.length}
-                </span>
-              )}
-            </Button>
-          </Link>
-        </div>
-      )} */}
-
       {/* Slides */}
-      <AnimatePresence mode="wait" custom={direction}>
+      <AnimatePresence custom={direction}>
         <motion.div
           key={currentIndex}
           custom={direction}
@@ -228,7 +187,7 @@ export function ReelsContainer({
           animate="center"
           exit="exit"
           transition={{
-            y: { type: "spring", stiffness: 300, damping: 30 },
+            y: { type: "spring", stiffness: 500, damping: 30 },
             opacity: { duration: 0.2 },
           }}
           className="absolute inset-0"
