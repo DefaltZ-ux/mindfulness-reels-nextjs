@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Heart, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { motion } from "motion/react";
+import { HeartIcon } from "@phosphor-icons/react";
 
 export default function LikedPage() {
   const { likedSlides, isLoading, initializeStore } = useLikedSlidesStore();
@@ -38,16 +39,16 @@ export default function LikedPage() {
             transition={{ duration: 0.6 }}
             className="max-w-md mx-auto"
           >
-            <Heart className="w-16 h-16 mx-auto mb-6 text-white/60" />
-            <h1 className="text-3xl mb-4">No Liked Moments Yet</h1>
+            <HeartIcon className="w-16 h-16 mx-auto mb-6 text-white/75" />
+            <h1 className="text-3xl font-bold mb-4">No Liked Moments Yet</h1>
             <p className="text-lg text-white/80 mb-8 leading-relaxed">
               Start exploring mindful quotes and double-tap the ones that
               resonate with you.
             </p>
             <Link href="/">
-              <Button className="bg-white text-primary hover:bg-white/90 px-8 py-3 text-lg">
-                <ArrowLeft className="w-5 h-5 mr-2" />
-                Explore Quotes
+              <Button className="bg-orange-500 text-white px-80 py-6 text-lg rounded-3xl hover:bg-orange-600 cursor-pointer">
+                <ArrowLeft strokeWidth={3} className="w-5 h-5" />
+                Explore More
               </Button>
             </Link>
           </motion.div>
