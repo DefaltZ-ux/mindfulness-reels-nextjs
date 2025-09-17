@@ -91,7 +91,7 @@ export function ReelSlideComponent({
       </div>
 
       {/* Like & Share Buttons */}
-      <div className="absolute bottom-20 right-4 flex flex-col items-center gap-8 z-20">
+      <div className="absolute bottom-20 right-6 flex flex-col items-center gap-4 md:gap-8 z-20">
         {/* Like Button */}
         {showLikeButton && (
           <motion.button

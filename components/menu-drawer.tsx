@@ -1,4 +1,4 @@
-import useIsMobile from "@/hooks/use-mobile";
+// import useIsMobile from "@/hooks/use-mobile";
 import React from "react";
 
 import { Button } from "./ui/button";
@@ -15,34 +15,34 @@ import {
 } from "./ui/drawer";
 
 export default function MenuDrawer() {
-  // const [open, setOpen] = React.useState(false);
-  const isMobile = useIsMobile();
+  // const isMobile = useIsMobile();
 
-  if (isMobile) {
-    return (
+  return (
+    <>
       <Drawer>
         <DrawerTrigger>
-          <DotsThreeOutlineVerticalIcon size={24} color="white"/>
+          <DotsThreeOutlineVerticalIcon size={24} color="white" />
         </DrawerTrigger>
-        <DrawerContent>
+        <DrawerContent className="max-w-3xl mx-auto">
           <DrawerHeader>
-            <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-            <DrawerDescription>This action cannot be undone.</DrawerDescription>
+            <DrawerTitle>Menu</DrawerTitle>
+            <DrawerDescription>Coming soon</DrawerDescription>
           </DrawerHeader>
+          <div className="text-center">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa est
+            iste aspernatur enim suscipit obcaecati totam repellendus quas et
+            aliquid molestiae, iure amet libero debitis corrupti, illo corporis,
+            ut natus impedit! Tempore quas fugiat nemo rerum corporis nisi
+            incidunt provident accusamus! Ad fugit dicta vero quod placeat in
+            distinctio consequatur?
+          </div>
           <DrawerFooter>
-            <Button>Submit</Button>
             <DrawerClose>
-              <Button variant="outline">Cancel</Button>
+              <Button variant="outline">Close</Button>
             </DrawerClose>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
-    );
-  }
-
-  return (
-    <>
-      <div>Share</div>
     </>
   );
 }
