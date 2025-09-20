@@ -65,7 +65,7 @@ export function LikedReelSlideComponent({
           {isDeleting ? (
             <div className="w-6 h-6 animate-spin rounded-full border-2 border-white border-t-transparent" />
           ) : (
-            <HeartIcon className="w-6 h-6 fill-red-500 text-red-500" />
+            <HeartIcon weight="fill" className="w-6 h-6 fill-red-500 text-red-500" />
           )}
         </motion.button>
 
