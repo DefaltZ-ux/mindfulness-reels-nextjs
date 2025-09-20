@@ -78,7 +78,7 @@ export function ReelSlideComponent({
       }}
       onClick={handleDoubleTap}
     >
-      {/* Background Overlay */}
+      {/* Background Overlay When Theme Is Image */}
       {slide?.backgroundImage && (
         <div className="absolute inset-0 bg-black opacity-50 z-[1]"></div>
       )}

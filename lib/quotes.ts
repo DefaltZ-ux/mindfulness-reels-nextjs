@@ -101,7 +101,7 @@ export const bgImages = [
   "/images/zen-garden-with-stones-and-sand.jpg",
 ];
 
-export const bgSounds = [
+export const bgAudios = [
   "/sounds/bird.mp3",
   "/sounds/fire.mp3",
   "/sounds/forest.mp3",

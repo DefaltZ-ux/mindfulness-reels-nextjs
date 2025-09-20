@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { HouseIcon, HeartIcon } from "@phosphor-icons/react";
+import { HouseIcon, HeartIcon, PaletteIcon } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import useIsMobile from "@/hooks/use-mobile";
@@ -11,7 +11,7 @@ import { useLikedSlidesStore } from "@/store/liked-slides-store";
 const navItems = [
   { href: "/", icon: HouseIcon, label: "Home" },
   { href: "/liked", icon: HeartIcon, label: "Liked" },
-  //   { href: "/theme", icon: Settings, label: "Theme" },
+  { href: "/theme", icon: PaletteIcon, label: "Theme" },
 ];
 
 export default function AppNavigation() {
@@ -24,7 +24,7 @@ export default function AppNavigation() {
       <motion.nav
         initial={{ y: 100 }}
         animate={{ y: 0 }}
-        className="fixed bottom-0 left-0 right-0 bg-background/50 backdrop-blur-sm z-50 h-12 flex items-center"
+        className="fixed bottom-0 left-0 right-0 bg-background/50 backdrop-blur-sm z-50 h-12 flex items-center shadow-2xl shadow-black"
       >
         {/* bg-background/50 backdrop-blur-sm */}
         <div className="flex items-center justify-around flex-1 py-2">

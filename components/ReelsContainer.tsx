@@ -26,6 +26,7 @@ export function ReelsContainer({
   const [slides, setSlides] = useState<ReelSlide[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { addLikedSlide, removeLikedSlideById, initializeStore } =
     useLikedSlidesStore();
@@ -44,17 +45,18 @@ export function ReelsContainer({
         Math.floor(Math.random() * inspirationalQuotes.length)
       ];
 
-    let randomImage, randomColor;
+    let randomImage: string | undefined;
+    let randomColor: string | undefined;
 
     if (themeType === "image") {
-      randomImage = bgImages[Math.floor(Math.random() * mindfulColors.length)];
+      randomImage = bgImages[Math.floor(Math.random() * bgImages.length)];
     } else {
       randomColor =
         mindfulColors[Math.floor(Math.random() * mindfulColors.length)];
     }
 
     return {
-      id: `slide-${Date.now()}-${Math.random()}`,
+      id: crypto.randomUUID(),
       text: randomQuote,
       backgroundColor: randomColor,
       backgroundImage: randomImage,
@@ -73,6 +75,7 @@ export function ReelsContainer({
       const initialSet = Array.from({ length: 5 }, () => generateSlide());
       setSlides(initialSet);
     }
+    setIsLoading(false);
   }, [initialSlides, generateSlide]);
 
   // Navigation functions
@@ -166,11 +169,7 @@ export function ReelsContainer({
     }),
   };
 
-  if (slides.length === 0 && isLikedPage) {
-    return null; // Let the parent component handle empty state
-  }
-
-  if (slides.length === 0) {
+  if (isLoading) {
     return (
       <div className="h-dvh w-full flex items-center justify-center bg-green-500">
         <div className="text-center text-white">
@@ -179,6 +178,11 @@ export function ReelsContainer({
         </div>
       </div>
     );
+  }
+
+  // Let the parent component handle empty state
+  if (slides.length === 0 && isLikedPage) {
+    return null;
   }
 
   return (

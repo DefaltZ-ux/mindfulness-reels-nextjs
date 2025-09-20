@@ -11,7 +11,7 @@ interface ThemeState {
 export const useThemeStore = create<ThemeState>()(
   persist(
     (set) => ({
-      themeType: "color",
+      themeType: "image",
       audioEnabled: false,
 
       setThemeType: (type: "color" | "image") => {

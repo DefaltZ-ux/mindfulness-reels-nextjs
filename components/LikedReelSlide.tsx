@@ -35,10 +35,21 @@ export function LikedReelSlideComponent({
   return (
     <div
       className="relative h-dvh w-full flex items-center justify-center overflow-hidden select-none"
-      style={{ backgroundColor: slide.backgroundColor }}
+      style={{
+        backgroundColor: slide.backgroundColor,
+        backgroundImage: `url('${slide?.backgroundImage}')`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
+      {/* Background Overlay When Theme Is Image */}
+      {slide?.backgroundImage && (
+        <div className="absolute inset-0 bg-black opacity-50 z-[1]"></div>
+      )}
+
       {/* Quote Text */}
-      <div className="px-8 py-12 max-w-4xl mx-auto text-center">
+      <div className="px-8 py-12 max-w-4xl mx-auto text-center z-[2]">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -65,7 +76,10 @@ export function LikedReelSlideComponent({
           {isDeleting ? (
             <div className="w-6 h-6 animate-spin rounded-full border-2 border-white border-t-transparent" />
           ) : (
-            <HeartIcon weight="fill" className="w-6 h-6 fill-red-500 text-red-500" />
+            <HeartIcon
+              weight="fill"
+              className="w-6 h-6 fill-red-500 text-red-500"
+            />
           )}
         </motion.button>
 
@@ -142,7 +156,7 @@ export function LikedReelSlideComponent({
       {/* Liked indicator */}
       <div className="absolute bottom-20 lg:bottom-20 left-1/2 -translate-x-1/2 text-white/50 text-sm text-center">
         <div className="flex items-center gap-2">
-          <HeartIcon className="w-4 h-4 fill-red-500 text-red-500" />
+          <HeartIcon weight="fill" className="w-4 h-4 text-red-500" />
           <p>Tap heart to remove</p>
         </div>
       </div>
