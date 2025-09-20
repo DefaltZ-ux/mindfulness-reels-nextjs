@@ -1,10 +1,11 @@
 "use client";
 
+import AudioCard from "@/components/AudioCard";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useThemeStore } from "@/store/theme-store";
 import { ImagesIcon, SwatchesIcon } from "@phosphor-icons/react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Bird, Flame, Leaf } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import React from "react";
@@ -99,26 +100,42 @@ export default function ThemePage() {
                   onChange={() => setAudioEnabled(!audioEnabled)}
                   className="sr-only"
                 />
-                <div className="block h-8 w-14 rounded-full bg-[#E5E7EB]"></div>
+                <div
+                  className={"block h-8 w-14 rounded-full bg-primary/25"}
+                ></div>
                 <div
                   className={cn(
                     "absolute left-1 top-1 h-6 w-6 rounded-full bg-white transition-all duration-300",
-                    audioEnabled && "left-7"
+                    audioEnabled && "left-7 bg-primary"
                   )}
                 ></div>
               </div>
             </label>
           </div>
           {/* Audio Options */}
-          <div className="flex gap-4 justify-between items-center">
+          {/* <div className="flex gap-4 justify-between items-center">
             <div className="flex-1">
-              <audio src="/audios/fire.mp3">
-                Your browser does not support the audio element.
-              </audio>
+              <AudioCard
+                title="Fire"
+                icon={<Flame className="text-orange-500" />}
+                audioSrc="/audios/fire.mp3"
+              />
             </div>
-            <div className="flex-1"></div>
-            <div className="flex-1"></div>
-          </div>
+            <div className="flex-1">
+              <AudioCard
+                title="Bird"
+                icon={<Bird className="text-orange-500" />}
+                audioSrc="/audios/bird.mp3"
+              />
+            </div>
+            <div className="flex-1">
+              <AudioCard
+                title="Forest"
+                icon={<Leaf className="text-orange-500" />}
+                audioSrc="/audios/forest.mp3"
+              />
+            </div>
+          </div> */}
         </div>
       </div>
     </>

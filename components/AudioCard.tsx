@@ -1,13 +1,13 @@
 "use client";
 
-import { useRef } from "react";
-// import { Play, Pause } from "lucide-react"; // nice icons from lucide-react
+import { cn } from "@/lib/utils";
+import { useRef, useState } from "react";
 
 interface AudioCardProps {
   title: string;
   icon: React.ReactNode;
   audioSrc: string;
-  onSelect?: (title: string) => void;
+  onSelect?: (title: string, isPlaying: boolean) => void;
 }
 
 export default function AudioCard({
@@ -17,28 +17,54 @@ export default function AudioCard({
   onSelect,
 }: AudioCardProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  function handlePlay() {
-    // Pause all other playing audios if any
-    document
-      .querySelectorAll("audio")
-      .forEach((a) => a !== audioRef.current && a.pause());
+  function togglePlay() {
+    const audio = audioRef.current;
+    if (!audio) return;
 
-    if (audioRef.current) {
-      audioRef.current.currentTime = 0; // start from beginning
-      audioRef.current.play();
-      onSelect?.(title);
+    if (!isPlaying) {
+      // pause all other playing audios
+      document.querySelectorAll("audio").forEach((audio) => {
+        if (audio !== audio) {
+          audio.pause();
+          audio.currentTime = 0;
+        }
+      });
+
+      audio.currentTime = 0;
+      audio.play();
+      setIsPlaying(true);
+      onSelect?.(title, true);
+    } else {
+      audio.pause();
+      setIsPlaying(false);
+      onSelect?.(title, false);
     }
+  }
+
+  // When the audio ends, reset state
+  function handleEnded() {
+    setIsPlaying(false);
   }
 
   return (
     <div
-      className="flex flex-col items-center p-4 rounded-2xl shadow cursor-pointer bg-white hover:bg-gray-100 transition"
-      onClick={handlePlay}
+      className={cn(
+        "flex flex-col items-center p-4 rounded-md shadow cursor-pointer bg-white hover:bg-gray-100 transition",
+        isPlaying && "bg-orange-500/25"
+      )}
+      onClick={togglePlay}
     >
       <div className="text-3xl">{icon}</div>
       <p className="mt-2 text-sm font-medium">{title}</p>
-      <audio ref={audioRef} src={audioSrc} preload="auto" />
+
+      <audio
+        ref={audioRef}
+        src={audioSrc}
+        preload="auto"
+        onEnded={handleEnded}
+      />
     </div>
   );
 }
