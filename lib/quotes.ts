@@ -1,24 +1,6 @@
 export const inspirationalQuotes = [
-  "The present moment is the only time over which I have dominion.",
-  "Peace comes from within. Do not seek it outside.",
-  "Breathe in peace, breathe out stress.",
-  "Let go of what was, embrace what is, trust what will be.",
-  "Your mind is a garden, your thoughts are the seeds.",
-  "Be present in all things and thankful for all things.",
-  "The quieter you become, the more you can hear.",
-  "Mindfulness is about being fully awake in our lives.",
-  "This too shall pass.",
   "I have the power to create my own calm.",
-  "Gratitude turns what we have into enough.",
-  "The journey of a thousand miles begins with a single step.",
-  "Be kind to yourself, you're doing the best you can.",
-  "Let your light shine bright today.",
-  "Trust the process, embrace the journey.",
   "I are stronger than I think.",
-  "Choose joy, choose peace, choose love.",
-  "Every moment is a fresh beginning.",
-  "Believe in the magic of new beginnings.",
-  "My potential is endless.",
   "I have so much to be grateful for.",
   "I can handle whatever comes my way.",
   "I am worthy of love and kindness.",
@@ -110,10 +92,27 @@ export const mindfulColors = [
   "#eab308", // yellow-500
 ];
 
+export const bgImages = [
+  "/images/calm-ocean-waves-at-sunset.jpg",
+  "/images/misty-lake-reflection-at-dawn.jpg",
+  "/images/peaceful-forest-with-soft-sunlight.jpg",
+  "/images/peaceful-lavender-field-in-bloom.jpg",
+  "/images/serene-mountain-landscape-with-clouds.jpg",
+  "/images/zen-garden-with-stones-and-sand.jpg",
+];
+
+export const bgSounds = [
+  "/sounds/bird.mp3",
+  "/sounds/fire.mp3",
+  "/sounds/forest.mp3",
+];
+
 export interface ReelSlide {
   id: string;
   text: string;
-  backgroundColor: string;
+  backgroundColor?: string;
+  backgroundImage?: string;
+  backgroundAudio?: string;
   isLiked: boolean;
   timestamp: number;
 }

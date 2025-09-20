@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ReelsContainer } from "@/components/reels-container";
+import { ReelsContainer } from "@/components/ReelsContainer";
 import { useLikedSlidesStore } from "@/store/liked-slides-store";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
