@@ -7,17 +7,23 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import useIsMobile from "@/hooks/use-mobile";
 import { useLikedSlidesStore } from "@/store/liked-slides-store";
+import { Leaf } from "lucide-react";
 
 const navItems = [
-  { href: "/", icon: HouseIcon, label: "Home" },
-  { href: "/liked", icon: HeartIcon, label: "Liked" },
-  { href: "/theme", icon: PaletteIcon, label: "Theme" },
+  // { href: "/", icon: HouseIcon, label: "Home" },
+  { href: "/feed", icon: HouseIcon, label: "Feed" },
+  { href: "/liked", icon: HeartIcon, label: "Likes" },
+  { href: "/theme", icon: PaletteIcon, label: "Theme Settings" },
 ];
 
 export default function AppNavigation() {
   const pathname = usePathname();
   const isMobile = useIsMobile();
   const { likedSlides } = useLikedSlidesStore();
+
+  if (pathname === "/") {
+    return null;
+  }
 
   if (isMobile) {
     return (
@@ -81,10 +87,11 @@ export default function AppNavigation() {
             className="flex items-center gap-2"
           >
             <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
-              <HeartIcon
+              {/* <HeartIcon
                 weight="bold"
                 className="w-4 h-4 text-primary-foreground"
-              />
+              /> */}
+              <Leaf className="w-5 h-5 text-primary-foreground" />
             </div>
             <span className="font-semibold text-lg">Mindfulness</span>
           </motion.div>

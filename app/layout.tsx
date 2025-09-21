@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Suspense } from "react";
 import AppNavigation from "@/components/AppNavigation";
+import { PageGuard } from "@/components/PageGuard";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,8 +34,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Suspense fallback={<div>Loading...</div>}>
-          <AppNavigation />
-          <main>{children}</main>
+          <PageGuard>
+            <AppNavigation />
+            <main>{children}</main>
+          </PageGuard>
         </Suspense>
       </body>
     </html>

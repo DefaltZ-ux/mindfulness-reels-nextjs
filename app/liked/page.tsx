@@ -31,7 +31,7 @@ export default function LikedPage() {
 
   if (likedSlides.length === 0) {
     return (
-      <div className="h-screen w-full flex items-center justify-center bg-primary/85">
+      <div className="h-screen w-full flex items-center justify-center bg-gradient-to-br from-primary via-primary/50 to-primary">
         <div className="text-center text-white px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -45,7 +45,7 @@ export default function LikedPage() {
               Start exploring mindful quotes and double-tap the ones that
               resonate with you.
             </p>
-            <Link href="/">
+            <Link href="/feed">
               <Button className="bg-white/50 text-black px-8 py-6 text-md rounded-3xl hover:bg-white/40 cursor-pointer">
                 <ArrowLeft strokeWidth={3} className="w-5 h-5" />
                 <span>Explore More</span>

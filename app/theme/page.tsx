@@ -27,7 +27,7 @@ export default function ThemePage() {
           className="sticky top-0 z-40 bg-background/80 backdrop-blur-md"
         >
           <div className="flex items-center gap-4 px-4 py-4">
-            <Link href="/">
+            <Link href="/feed">
               <Button
                 variant="ghost"
                 size="icon"
